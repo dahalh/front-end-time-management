@@ -1,9 +1,24 @@
 import React, {useState} from "react";
 
 const initialState = {task: "", hr: ""};
+const weeklyHours = 168;
 
-export const Form = ({addNewTask}) => {
+export const Form = ({addNewTask, total}) => {
   const [newTask, setNewTask] = useState(initialState);
+
+  const handleOnSubmit = e => {
+    e.preventDefault();
+    
+    if (newTask.hr < 1){
+      return alert("please enter a positive number");
+    }
+    if (total + newTask.hr > weeklyHours) {
+      return alert("You have exceeded the weekly hours");
+    }
+    addNewTask(newTask);
+    setNewTask(initialState);
+    
+  };
 
   const handleOnChange = e => {
     // desconstruct to make code look nicer
@@ -14,23 +29,6 @@ export const Form = ({addNewTask}) => {
       [name]: name === "hr" ? +value : value,
     });
   };
-
-  const weeklyHours = 24*7;
-
-  const handleOnSubmit = e => {
-    e.preventDefault();
-    
-    // if (newTask.hr < 1){
-    //   return alert("please enter a positive number");
-    // }
-    // if (total + newTask.hr > weeklyHours) {
-    //   return alert("You have exceeded the weekly hours");
-    // }
-    addNewTask(newTask);
-    setNewTask(initialState);
-  };
-
-
 
   return (
     <div className="row">

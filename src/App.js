@@ -55,7 +55,8 @@ function App() {
     };
 
     const ttlBadHours = badList.reduce((acc, curr) => acc + curr.hr, 0)
-    const ttlTaskHr = badList.reduce((subttl, item) => subttl + item.hr, 0)
+    const ttlTaskHr = taskList.reduce((subttl, item) => subttl + item.hr, 0)
+    // const total = ttlBadHours + ttlTaskHr;
     
 
   return (
@@ -71,7 +72,7 @@ function App() {
                 <BadList  badList={badList} handleOnDeleteBadList={handleOnDeleteBadList} markAsTask={markAsTask} ttlBadHours={ttlBadHours}/>
             </div>
             
-                <TotalHours total = {ttlTaskHr, ttlBadHours} />
+                <TotalHours total = {ttlBadHours + ttlTaskHr} />
         </div>
     </div>
   );
