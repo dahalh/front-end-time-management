@@ -1,0 +1,43 @@
+import React from "react";
+
+export const TaskList = ({ taskList }) => {
+  console.log(taskList);
+  return (
+    <div className="col-md-6 mb-5">
+      <h2 className="text-center">Task List</h2>
+      <hr />
+      <div className="list-items">
+        <table className="table table-striped">
+          <tbody id="task-list">
+            {taskList.map((item, i) => (
+                <tr>
+                  <td>
+                    <input type="checkbox" name="" id="" />{item.task}
+                  </td>
+                  <td>{item.hr} hrs</td>
+                  <td className="text-end">
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onclick="deleteItem(${i})"
+                    >
+                      <i className="fas fa-trash" title="Delete"></i>
+                    </button>
+                    <button
+                      className="btn btn-warning btn-sm btn-warning"
+                      onclick="markAsNotToDo(${i})"
+                    >
+                      <i
+                        className="fas fa-arrow-right"
+                        title="Mark as bad list"
+                      ></i>
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};

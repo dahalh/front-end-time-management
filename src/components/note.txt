@@ -1,0 +1,5 @@
+1. create state in app.js
+2. create a function in app.js to updatethe state
+3. pass that function to the form component as props
+4. recieve the function in the FORM component through destructuring
+5. call that fucntion inside handleOnSubmit and pass the newTask state as parameter
