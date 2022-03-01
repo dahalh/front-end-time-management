@@ -10,7 +10,7 @@ export const TaskList = ({ taskList, handleOnDeleteTaskList, markAsNotToDo }) =>
         <table className="table table-striped">
           <tbody id="task-list">
             {taskList.map((item, i) => (
-                <tr>
+                <tr key={i}>
                   <td>
                     <input type="checkbox" name="" id="" /> {item.task}
                   </td>

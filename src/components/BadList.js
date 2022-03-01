@@ -1,6 +1,7 @@
 import React from "react";
 
 export const BadList = ({badList, handleOnDeleteBadList, markAsTask}) => {
+
   console.log(badList);
   return (
     <div className="col-md-6">
@@ -11,7 +12,7 @@ export const BadList = ({badList, handleOnDeleteBadList, markAsTask}) => {
           <tbody id="bad-list">
         
           {badList.map((item, i) => (
-                <tr>
+                <tr key={i}>
                   <td>
                     <input type="checkbox" name="" id="" /> {item.task}
                   </td>

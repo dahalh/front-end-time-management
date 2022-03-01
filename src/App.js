@@ -52,10 +52,11 @@ function App() {
 
       const newArg = badList.filter((item, index) => index !==i)
       setBadList(newArg);
-    }
+    };
 
-  
-
+    const ttlBadHours = badList.reduce((acc, curr) => acc + curr.hr, 0)
+    const ttlTaskHr = badList.reduce((subttl, item) => subttl + item.hr, 0)
+    
 
   return (
     <div className="wrapper">
@@ -66,12 +67,11 @@ function App() {
             <Form  addNewTask={addNewTask}/>
             {/* <!-- list area --> */}
             <div className="row">
-                <TaskList taskList={taskList} handleOnDeleteTaskList={handleOnDeleteTaskList} markAsNotToDo={markAsNotToDo} />
-                <BadList  badList={badList} handleOnDeleteBadList={handleOnDeleteBadList} markAsTask={markAsTask}
-                />
+                <TaskList taskList={taskList} handleOnDeleteTaskList={handleOnDeleteTaskList} markAsNotToDo={markAsNotToDo} ttlTaskHr={ttlTaskHr} />
+                <BadList  badList={badList} handleOnDeleteBadList={handleOnDeleteBadList} markAsTask={markAsTask} ttlBadHours={ttlBadHours}/>
             </div>
             
-                <TotalHours />
+                <TotalHours total = {ttlTaskHr, ttlBadHours} />
         </div>
     </div>
   );

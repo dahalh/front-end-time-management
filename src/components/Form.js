@@ -15,11 +15,21 @@ export const Form = ({addNewTask}) => {
     });
   };
 
+  const weeklyHours = 24*7;
+
   const handleOnSubmit = e => {
     e.preventDefault();
+    
+    // if (newTask.hr < 1){
+    //   return alert("please enter a positive number");
+    // }
+    // if (total + newTask.hr > weeklyHours) {
+    //   return alert("You have exceeded the weekly hours");
+    // }
     addNewTask(newTask);
     setNewTask(initialState);
   };
+
 
 
   return (
@@ -31,7 +41,7 @@ export const Form = ({addNewTask}) => {
             className="row row-cols-md-auto d-flex justify-content-center g-3"
           >
             <div className="col-12">
-              <label className="visually-hidden" for="inlineFormInputGroupUsername">
+              <label className="visually-hidden">
                 Your Task
               </label>
               <div className="input-group">
@@ -49,7 +59,7 @@ export const Form = ({addNewTask}) => {
             </div>
 
             <div className="col-12">
-              <label className="visually-hidden" for="inlineFormInputGroupUsername">
+              <label className="visually-hidden">
                 Hours
               </label>
               <div className="input-group">
