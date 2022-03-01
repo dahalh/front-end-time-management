@@ -8,13 +8,53 @@ import {TotalHours } from "./components/TotalHours";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
+  const [badList, setBadList] = useState([]);
 
 
   const addNewTask = (task) => {
     setTaskList([...taskList, task]);
   };
 
-  // console.log(taskList);
+  // delete the task for task list
+  const handleOnDeleteTaskList = i => {
+    console.log(i);
+
+    if(window.confirm("Are you sure you want to delete this task?"))
+    {
+      const newArg = taskList.filter((item, index) => index !== i)
+      setTaskList(newArg);
+    }
+  }
+
+  const handleOnDeleteBadList = i => {
+    console.log(i);
+
+    if(window.confirm("Are you sure you want to delete this task?"))
+    {
+      const newArg = badList.filter((item, index) => index !== i)
+      setBadList(newArg);
+    }
+  }
+
+    // take item from taskList and put it in the BadList
+    const markAsNotToDo = i => {
+      const selectedItem = taskList[i];
+
+      setBadList([...badList,selectedItem]);
+      const newArg = taskList.filter((item, index) => index !==i)
+      setTaskList(newArg);
+    }
+
+    // take item from badlist and put it in the goodlist
+    const markAsTask = i => {
+      const selectedItem = badList[i];
+      setTaskList([...taskList,selectedItem]);
+
+      const newArg = badList.filter((item, index) => index !==i)
+      setBadList(newArg);
+    }
+
+  
 
 
   return (
@@ -26,8 +66,9 @@ function App() {
             <Form  addNewTask={addNewTask}/>
             {/* <!-- list area --> */}
             <div className="row">
-                <TaskList taskList={taskList} />
-                <BadList />
+                <TaskList taskList={taskList} handleOnDeleteTaskList={handleOnDeleteTaskList} markAsNotToDo={markAsNotToDo} />
+                <BadList  badList={badList} handleOnDeleteBadList={handleOnDeleteBadList} markAsTask={markAsTask}
+                />
             </div>
             
                 <TotalHours />

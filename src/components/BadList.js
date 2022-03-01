@@ -1,17 +1,44 @@
 import React from "react";
 
-export const BadList = () => {
+export const BadList = ({badList, handleOnDeleteBadList, markAsTask}) => {
+  console.log(badList);
   return (
     <div className="col-md-6">
       <h2 className="text-center">Bad List</h2>
       <hr />
       <div className="list-items">
         <table className="table table-striped">
-          <tbody id="bad-list"></tbody>
+          <tbody id="bad-list">
+        
+          {badList.map((item, i) => (
+                <tr>
+                  <td>
+                    <input type="checkbox" name="" id="" /> {item.task}
+                  </td>
+                  <td>{item.hr} hrs</td>
+                  <td className="text-end">
+                  <button
+                      className="btn btn-warning btn-sm btn-warning"
+                      onClick={() => markAsTask(i)}
+                    >
+                      <i
+                        className="fas fa-arrow-left"
+                        title="Mark as task list"
+                      ></i>
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleOnDeleteBadList(i)}
+                    >
+                      <i className="fas fa-trash" title="Delete"></i>
+                    </button>
+                    
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
         </table>
-      </div>
-      <div className="ttl-bad text-end text-light">
-        Total time saved = <span id="totalBadHrs"> 0 </span> hrs
       </div>
     </div>
   );
